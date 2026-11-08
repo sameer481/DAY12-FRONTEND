@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 12 - Final Section Styling & UI Polish</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-page: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-card: rgba(255, 255, 255, 0.85);
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --accent-glow: rgba(59, 130, 246, 0.2);
+      --shadow-card: 0 20px 25px -5px rgba(0,0,0,0.08);
+      --shadow-hover: 0 25px 35px -5px rgba(0,0,0,0.12);
+    }
+    body.dark {
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --bg-page: #0b1120;
+      --bg-surface: #1e293b;
+      --bg-card: rgba(30, 41, 59, 0.85);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+      --accent-glow: rgba(59, 130, 246, 0.35);
+      --shadow-card: 0 20px 25px -5px rgba(0,0,0,0.4);
+      --shadow-hover: 0 25px 35px -5px rgba(0,0,0,0.6);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg-page);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+    .top-bar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .theme-toggle {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .main-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      position: relative;
+    }
+    .glow-orb {
+      position: absolute;
+      top: 15%;
+      left: 20%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cta-card {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 4rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.3s;
+    }
+    .cta-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+    }
+    .stars {
+      color: #f59e0b;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.15rem;
+    }
+    .form-wrap {
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      padding: 0.4rem;
+      border-radius: 12px;
+    }
+    @media (min-width: 640px) {
+      .form-wrap {
+        flex-direction: row;
+      }
+    }
+    .form-wrap input {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      border: none;
+      background: transparent;
+      color: var(--text-main);
+      font-size: 1rem;
+      outline: none;
+    }
+    .form-wrap button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.85rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .trust-strip {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .prop-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .prop-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+    }
+    .prop-card h3 {
+      margin-bottom: 0.5rem;
+    }
+    .prop-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    footer {
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <strong>Day 12: Final Section Styling</strong>
+    <button class="theme-toggle" id="themeBtn">🌙 Toggle Dark Mode</button>
+  </div>
+
+  <div class="main-wrap">
+    <div class="glow-orb"></div>
+
+    <section class="cta-card">
+      <div class="badge">
+        <span class="stars">★★★★★</span>
+        <span>Trusted by 10,000+ engineers</span>
+      </div>
+      <h2>Ready to Master Modern Section Styling?</h2>
+      <p class="subtitle">Complete visual polish, depth elevations, design tokens, and accessible micro-interactions.</p>
+      
+      <form class="form-wrap" onsubmit="event.preventDefault(); alert('Subscribed successfully!');">
+        <input type="email" placeholder="Enter your email address..." required />
+        <button type="submit">Get Started Free →</button>
+      </form>
+
+      <div class="trust-strip">
+        <span>✓ No credit card required</span>
+        <span>✓ Instant setup</span>
+        <span>✓ Full source code</span>
+      </div>
+    </section>
+
+    <section class="props-grid">
+      <div class="prop-card">
+        <h3>🎨 Design Tokens</h3>
+        <p>Centralized CSS custom properties for effortless theming and color consistency.</p>
+      </div>
+      <div class="prop-card">
+        <h3>✨ Glassmorphism & Depth</h3>
+        <p>Combining multi-layer box shadows with backdrop-filter blur for modern visual layering.</p>
+      </div>
+      <div class="prop-card">
+        <h3>📱 Responsive Micro-Interactions</h3>
+        <p>Subtle hover lifts, button states, and accessible focus rings across all devices.</p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2026 Frontend Mastery — Day 12 Final Section Styling</p>
+  </footer>
+
+  <script>
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      themeBtn.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
+    });
+  </script>
+</body>
+</html>

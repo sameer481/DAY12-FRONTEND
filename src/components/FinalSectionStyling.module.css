@@ -1,0 +1,414 @@
+/* Design Tokens / CSS Custom Properties */
+.wrapper {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --accent-glow-1: rgba(59, 130, 246, 0.2);
+  --accent-glow-2: rgba(147, 51, 234, 0.15);
+  --shadow-card: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 25px 35px -5px rgba(0, 0, 0, 0.12), 0 12px 16px -6px rgba(0, 0, 0, 0.06);
+
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Dark Theme Overrides */
+.darkTheme {
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --bg-page: #0b1120;
+  --bg-surface: #1e293b;
+  --bg-card: rgba(30, 41, 59, 0.85);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --accent-glow-1: rgba(59, 130, 246, 0.35);
+  --accent-glow-2: rgba(168, 85, 247, 0.25);
+  --shadow-card: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 25px 35px -5px rgba(0, 0, 0, 0.6);
+}
+
+/* 1. Top Bar */
+.topBar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.courseTag {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.2px;
+}
+
+.themeToggleBtn {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.themeToggleBtn:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary);
+}
+
+/* 2. Main Layout Container with Glow Orbs */
+.mainContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+  position: relative;
+}
+
+/* Ambient Radial Glows */
+.glowOrbPrimary {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--accent-glow-1) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glowOrbSecondary {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, var(--accent-glow-2) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 3. Final CTA Card Section (Glassmorphism & Depth) */
+.finalCtaSection {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 5rem;
+}
+
+.ctaCard {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3.5rem);
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.3s ease;
+}
+
+.ctaCard:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* Social Proof Pill Badge */
+.socialProofBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.avatarStack {
+  display: flex;
+  margin-right: -0.25rem;
+}
+
+.avatar {
+  font-size: 1.1rem;
+  margin-left: -0.35rem;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+.ratingInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.stars {
+  color: #f59e0b;
+  letter-spacing: 1px;
+}
+
+.ratingText {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Headline & Subtitle */
+.ctaHeading {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-main);
+  max-width: 800px;
+  margin: 0 auto 1.25rem;
+  letter-spacing: -0.5px;
+}
+
+.ctaSubtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Subscribe Form */
+.subscribeForm {
+  max-width: 550px;
+  margin: 0 auto 1.5rem;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputWrapper:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.emailInput {
+  flex: 1;
+  padding: 0.85rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+}
+
+.emailInput::placeholder {
+  color: var(--text-muted);
+}
+
+.submitBtn {
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.submitBtn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.successMessage {
+  background: #dcfce7;
+  color: #166534;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  border: 1px solid #bbf7d0;
+}
+
+/* Trust Markers */
+.trustMarkers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* 4. Value Props Grid */
+.valuePropsSection {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.valueCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--primary);
+}
+
+.iconCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #eff6ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.valueCard h3 {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+}
+
+.valueCard p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* 5. Production Footer */
+.footer {
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  padding: 4rem 1.5rem 2rem;
+  margin-top: 4rem;
+}
+
+.footerGrid {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.brandTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+.brandDesc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 360px;
+}
+
+.footerLinksCol h4 {
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.footerLinksCol a {
+  display: block;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footerLinksCol a:hover {
+  color: var(--primary);
+  transform: translateX(3px);
+}
+
+/* Bottom Bar */
+.footerBottomBar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.backToTopBtn {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border-color);
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backToTopBtn:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* Responsive Media Queries */
+@media (min-width: 640px) {
+  .inputWrapper {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 768px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
